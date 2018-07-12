@@ -119,7 +119,7 @@ export const TogglesPage =
                                 </li>
                                 <li>
                                   <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Search query" onChange={e => this.onQueryChange(e.target.value.toLowerCase())}/>
+                                    <input type="text" className="form-control" placeholder="Search query" onChange={e => this.onQueryChange(e.target.value.toLowerCase())} onInput={e => this.onQueryChange(e.target.value.toLowerCase())}/>
                                   </div>
                                 </li>
                               </ul>
