@@ -32,12 +32,20 @@ gulp.task('copy:statics', () => {
 gulp.task('build:config', () => {
     const enviroment = gutil.env.env
     const apiUrl = gutil.env.apiUrl
+    const auth = gutil.env.auth
+
     console.log(`Enviroment => ${enviroment}`)
     if(apiUrl) console.log(`apiUrl => ${apiUrl}`)
+    if(auth) console.log(`auth => ${auth}`)
+
     let config = require('./src/conf/baseConfig.json')
     if( enviroment === "dev"){
         const devConfig = require('./src/conf/devConfig.json')
-        config = Object.assign({}, config, devConfig, { apiUrl: apiUrl || devConfig.apiUrl })
+        config = Object.assign({}, config, devConfig, 
+            { 
+                apiUrl: apiUrl || devConfig.apiUrl,
+                auth: auth || devConfig.auth
+            })
     }
     
     return newFile("config.json", JSON.stringify(config))
